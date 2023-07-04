@@ -1,0 +1,58 @@
+.cta-section {
+  background-color: var(--main-yellow-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 30rem;
+  margin: 10rem 0;
+}
+
+.cta-section__mail {
+  margin-top: 3rem;
+}
+
+.cta-section__mail-input {
+  background: url(/assets/newsletter/icon/mail.svg) no-repeat 30px;
+  background-color: white;
+  padding: 1.75rem 5rem;
+  border: none;
+}
+
+.cta-section__mail-input:focus {
+  outline: none;
+}
+
+.cta-section__subscribe-button {
+  border: none;
+  padding: 1.75rem 5rem;
+}
+
+@media only screen and (max-width: 700px) {
+  .cta-section {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cta-section h3 {
+    text-align: center;
+  }
+
+  .cta-section__mail {
+    display: flex;
+    flex-direction: column;
+  }
+  .cta-section__subscribe-button {
+    margin-top: 1rem;
+  }
+
+  .cta-section__mail-input {
+    background: url(/assets/newsletter/icon/mail.svg) no-repeat 10px;
+    background-color: white;
+    background-size: 15px;
+    padding: 1rem 2rem;
+  }
+  .cta-section__subscribe-button {
+    padding: 1rem 2rem;
+  }
+}

@@ -1,0 +1,63 @@
+.post-section__image {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+  position: relative;
+}
+
+.post-section__image img {
+  max-height: 30rem;
+  width: 100%;
+  object-fit: cover;
+  min-height: 28rem;
+}
+
+.post-section__post-subtitle {
+  display: flex;
+  justify-content: space-between;
+}
+
+.post-section__text {
+  line-height: 2rem;
+  justify-content: first baseline;
+  color: var(--neutral-medium, #6B708D);
+  /* Body/Regular */
+  font-size: 20px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+
+}
+
+/* 
+* Glowing shadow
+*/
+.post-section__image__forefront-image {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+  background: transparent url('../spinner/spinner-gif-9.gif') no-repeat scroll center center;
+}
+
+.post-section__image__background-image {
+  background: transparent url('../spinner/spinner-gif-9.gif') no-repeat scroll center center;
+  position: absolute;
+  top: 2px;
+  left: 0;
+  transform: scale(1.05);
+  transition: all 0.5s ease;
+  opacity: .9;
+  filter: blur(1.28rem);
+  z-index: 1;
+  box-shadow: 5px 5px 10px #a00c0c;
+}
+
+@media only screen and (max-width: 800px) {
+  .post-section__post-subtitle {
+    flex-direction: column;
+  }
+
+  .post-section__post-subtitle__date {
+    margin-top: 0.5rem;
+  }
+}

@@ -1,0 +1,266 @@
+:root {
+  --main-blue-color: #072ac8;
+  --secondary-blue-color: #43d2ff;
+  --secondary-blue-color-2: #a2d6f9;
+  --secondary-blue-color-3: #d1edff;
+
+  --main-grey-color: #292e47;
+  --secondary-grey-color: #6b708d;
+  --secondary-grey-color-2: #f2f4fc;
+  --secondary-grey-color-3: #ecf7ff;
+
+  --main-yellow-color: #ffc600;
+
+  --max-width: 1200px;
+  font-family: "Roboto", sans-serif;
+}
+
+html {
+  max-width: var(--max-width);
+  margin: auto;
+  padding: 5rem;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  background-color: #f2f4fc;
+}
+
+.h1-heading {
+  font-size: 60px;
+  font-weight: bold;
+  color: var(--secondary-grey-color);
+}
+
+.h2-heading {
+  font-size: 50px;
+  font-weight: bold;
+  color: var(--secondary-grey-color);
+}
+
+.h3-heading {
+  font-size: 40px;
+  font-weight: bold;
+  color: var(--secondary-grey-color);
+}
+
+.h4-heading {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--secondary-grey-color);
+}
+
+.text-medium {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.text-regular {
+  font-size: 26px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+}
+
+.black {
+  color: black;
+}
+
+.main-grey {
+  color: var(--main-grey-color);
+}
+
+.secondary-grey {
+  color: var(--secondary-grey-color);
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.rectangular-main-button {
+  background-color: var(--main-blue-color);
+  padding: 0.75rem 2rem;
+  color: white;
+  text-decoration: none;
+}
+
+.rectangular-secondary-button {
+  color: var(--secondary-grey-color);
+  padding: 0.75rem 2rem;
+  text-decoration: none;
+}
+
+.cards {
+  display: flex;
+}
+
+.cards__card {
+  background-color: white;
+  padding: 2rem;
+  margin: 1rem;
+}
+
+.cards__card__icon {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  padding: 1.25rem;
+
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  background-color: var(--secondary-grey-color-3);
+}
+
+.cards__card__icon img {
+  display: block;
+  margin: auto;
+}
+
+.cards__card__title {
+  font-size: 24px;
+  font-weight: 600;
+  color: black;
+}
+
+.cards__card__subtitle {
+  color: var(--secondary-grey-color);
+}
+
+.cards__card_learn-more {
+  padding-top: 2rem;
+
+}
+
+.cards__card_learn-more a {
+  color: #072AC8;
+  text-decoration: none;
+}
+
+.cards__card__image {
+  background: transparent url('../spinner/spinner-gif-9.gif') no-repeat scroll center center;
+  width: 100%;
+  min-width: 22rem;
+  height: 20rem;
+  object-fit: cover;
+}
+
+.cards__card-with-image {
+  display: flex;
+  flex-direction: column;
+  padding: 0rem 0rem 1.5rem 0rem;
+}
+
+.cards__card-with-image .cards__card__title {
+  padding-top: 2.25rem;
+  padding-left: 2rem;
+  margin: 0;
+}
+
+.cards__card-with-image .cards__card__description,
+.cards__card-with-image .cards__card_learn-more {
+  padding: 1rem 2rem;
+  margin: 0;
+  color: #686464;
+}
+
+.submitted-message {
+  display: none;
+  opacity: 0;
+  transition: opacity 1s;
+
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1.5rem;
+  background-color: #292e4733;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
+.submitted-message.fade {
+  opacity: 1;
+  display: block;
+}
+
+.invalid-input {
+  box-shadow: 0 0 20px #ad3d3d;
+  transition: border-width 0.4s ease-out;
+}
+
+.error::before {
+  content: 'Not valid ';
+  position: absolute;
+  top: -4px;
+  color: red;
+}
+
+.error input {
+  border-color: red;
+}
+
+@media only screen and (max-width: 1100px) {
+  html {
+    padding: 0;
+  }
+
+  .h1-heading {
+    font-size: 40px;
+  }
+
+  .h2-heading {
+    font-size: 35px;
+  }
+
+  .h3-heading {
+    font-size: 30px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+
+  .rectangular-main-button,
+  .rectangular-secondary-button {
+    padding: 0.5rem 1rem;
+  }
+
+  .cards__card__icon {
+    width: 25px;
+    height: 25px;
+  }
+
+  .cards__card__icon img {
+    width: 20px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .cards {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cards__card {
+    padding: 2rem;
+  }
+
+  .cards__card-with-image {
+    padding: 0;
+  }
+
+  .cards__card-with-image .cards__card_learn-more {
+    padding-bottom: 2rem;
+
+  }
+
+  .cards__card__image {
+    min-height: 0;
+    min-width: 0;
+    max-height: 20rem;
+    max-width: 100%;
+  }
+}
