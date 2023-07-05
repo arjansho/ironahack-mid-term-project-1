@@ -66,7 +66,7 @@ function getData() {
   let url = window.location.href;
 
   if (url.includes("home.html")) {
-    // GET DATA AND FILL CARDS´
+    // GET DATA AND FILL CARDS´/
     getProjects(3);
   } else if (url.includes("project.html")) {
     document.querySelector("#date").innerHTML = actualDate();
