@@ -1,126 +1,98 @@
+var okName = false;
+var okEmail = false;
+var okPhone = false;
+var okMessage = false;
 
-function validateForm() {
-  removeInvalidWarnings();
-  const form = document.querySelector("#contact-us-section").value;
-  form.checkValidity();
-  form.reportValidity();
-  return form.checkValidity() && fieldValidations();
+function validateName() {
+  let nameUser = document.getElementById("name");
+  if (!nameUser.value) {
+    document.getElementById("errorName").hidden = false;
+    nameUser.style.borderColor = "red";
+    nameUser.style.borderStyle = "solid";
+    okName = false;
+  } else {
+    document.getElementById("errorName").hidden = true;
+    nameUser.style.borderStyle = "none";
+    okName = true;
+  }
+  checkValues();
 }
 
-function fieldValidations() {
-  let valid = true;
-  if (!validateNotEmpty(getFullName().value)) {
-    markAsInvalidField(getFullName())
-    valid = false;
+function validateEmail() {
+  let emailUser = document.getElementById("email");
+  if (!emailUser.value) {
+    document.getElementById("errorEmail").hidden = false;
+    document.getElementById("errorFormatEmail").hidden = true;
+    emailUser.style.borderColor = "red";
+    emailUser.style.borderStyle = "solid";
+    okEmail = false;
+  } else {
+    document.getElementById("errorEmail").hidden = true;
+    emailUser.style.borderStyle = "none";
+    okEmail = true;
   }
-  if (!validateEmail(getEmail().value)) {
-    markAsInvalidField(getEmail());
-    valid = false;
-  }
-  if (!validatePhone(getPhone().value)) {
-    markAsInvalidField(getPhone())
-    valid = false;
-  }
-  if (!validateNotEmpty(getMessage().value)) {
-    markAsInvalidField(getMessage())
-    valid = false;
-  }
-  return valid;
-}
-
-const validatePhone = ()=>{
-  return String(phone).match(/^(\+34|0034|34)?[6789]\d{8}$/) !==null;
-}
-
-const validateEmail = (): boolean => {
-  return String(email)
+  var isValid = emailUser.value
     .toLowerCase()
     .match(
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    ) !== null;
-};
+    );
+  if (!isValid) {
+    document.getElementById("errorFormatEmail").hidden = false;
+    document.getElementById("errorEmail").hidden = true;
+    emailUser.style.borderColor = "red";
+    emailUser.style.borderStyle = "solid";
+  } else {
+    document.getElementById("errorFormatEmail").hidden = true;
+  }
+  checkValues();
+}
 
-const validateNotEmpty = (name: String): boolean => {
-  if (name) return true;
+function validatePhone() {
+  let phoneNumber = document.getElementById("phone");
+  if (!phoneNumber.value) {
+    document.getElementById("errorPhone").hidden = false;
+    phoneNumber.style.borderColor = "red";
+    phoneNumber.style.borderStyle = "solid";
+    okPhone = false;
+  } else {
+    document.getElementById("errorPhone").hidden = true;
+    phoneNumber.style.borderStyle = "none";
+    okPhone = true;
+  }
+  checkValues();
+}
+
+function validateMessage(){
+  let messageUser = document.getElementById("message");
+  if(messageUser.value.length < 6){
+    document.getElementById("errorMessageUser").hidden = false;
+    messageUser.style.borderColor = "red";
+    messageUser.style.borderStyle ="solid"
+    okMessage = false;
+  }else{
+    document.getElementById("errorMessageUser").hidden = true;
+    messageUser.style.borderStyle = "none";
+    okMessage = true;
+  }
+  checkValues();
+}
+
+function checkValues() {
+  if (okName && okEmail && okPhone && okMessage) {
+    document.getElementById("errorSubmit").hidden = true;
+  }
 }
 
 
-function markAsInvalidField() {
-  element.classList.add('invalid-input');
+function sendForm() {
+
+  let incompleteForm = document.getElementById("errorSubmit");
+  if (okName && okEmail && okPhone && okMessage) {
+    incompleteForm.hidden = true;
+   toggleModal();
+  } else {
+    incompleteForm.hidden = false;
+    //incompleteForm.style.borderStyle = "dotted";
+    incompleteForm.style.borderColor = "red";
+  }
 }
-
-function removeInvalidWarnings() {
-  const formElements = document.querySelectorAll(
-    "#contact-us-form input, #contact-us-form area"
-  ).value;
-  formElements.forEach((element) => element.classList.remove('invalid-input'));
-}
-
-
-function getFullName() {
-  return (document.querySelector('#contact-us-form input[name="full-name"]').value);
-}
-function getEmail() {
-  return (document.querySelector('#contact-us-form input[name="email"]').value);
-}
-function getPhone() {
-  return (document.querySelector('#contact-us-form input[name="phone"]').value);
-}
-function getMessage() {
-  return (document.querySelector('#contact-us-form textarea[name="message"]').value);
-}
-
-
-function showPleaseWaitMessage() {
-  const subscribeButton = document.querySelector(
-    ".contat-us-section__submit-button"
-  ).value;
-
-  subscribeButton.innerHTML = "Please wait...";
-}
-
-function showSubmissionMessage() {
-  const submissionMessage = document.querySelector(
-    ".contat-us-section .submitted-message"
-  ).value;
-  submissionMessage.classList.toggle('fade');
-}
-
-
-function hideForm() {
-  const form = document.querySelector(
-    "#contact-us-form"
-  ).value;
-
-  form.style.display = "none";
-  form.style.visibility = "hidden";
-}
-
-function restoreSendFormButton() {
-  const submitButton = document.querySelector(
-    ".contat-us-section__submit-button"
-  ).value;
-
-  submitButton.style.backgroundColor = "var(--main-blue-color)";
-  submitButton.innerHTML = "Submit";
-}
-
-function showError() {
-  const submitButton = document.querySelector(
-    ".contat-us-section__submit-button"
-  ).value;
-
-  submitButton.innerHTML = "Something went wrong!";
-  submitButton.style.backgroundColor = "red";
-  return new Promise((res) =>
-    setTimeout(() => res("Enough time to see the error"), 4000)
-  );
-}
-
-window.addEventListener("load", () => {
-  const sendFormButton = document.querySelector(
-    ".contat-us-section__submit-button"
-  ).value;
-
-  sendFormButton.addEventListener("click", sendForm);
-});
