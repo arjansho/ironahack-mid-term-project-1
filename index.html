@@ -23,10 +23,10 @@
     <link rel="stylesheet" href="/assets/css/services.css">
     <link rel="stylesheet" href="/assets/css/cta.css">
     <link rel="stylesheet" href="/assets/css/footersection.css">
-    
+    <link rel="stylesheet" href="assets/css/scroll.css">
     <script>var exports = {};</script>
-    <script type="module" src="/out/src/projects.js"></script>
-    <script type="module" src="/out/src/burguer-menu.js"></script>
+    <script type="module" src="/src/projects.js"></script>
+    <script type="module" src="/src/burguer-menu.js"></script>
     <title>Circle Agency</title>
 </head>
 
@@ -166,6 +166,7 @@
         <div>
             <div class="footer-section__icon"><img src="/assets/logos/circle.svg" alt="Circle company logo" /></div>
             <div class="footer-section__address">2972 Westheimer Rd. Santa Ana, Illinois 85486</div>
+            
         </div>
         <div>
             <ul class="footer-section__links">
@@ -178,6 +179,15 @@
             </ul>
         </div>
     </section>
-</body>
+    <div className="scroll-to-top">
+        <span class="fa fa-arrow-up btn-scroll btn-scroll-position btn-scroll-style"></span>
+        
+    </div>
+
+    <footer-component></footer-component>
+
+    <script src="/src/scroll.js"></script>
+    <script src="/src/index.js"></script>
+    </body>
 
 </html>

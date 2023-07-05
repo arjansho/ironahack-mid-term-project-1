@@ -1,54 +1,14 @@
-const CONTACT_API_BASE_URL = "https://";
-
-export async function sendForm(event?: { preventDefault: () => void }) {
-  event?.preventDefault();
-
-  if (!validateForm()) {
-    return;
-  }
-
-  showPleaseWaitMessage();
-
-  const fullName = getFullName().value;
-  const email = getEmail().value;
-  const phone = getPhone().value;
-  const message = getMessage().value;
-
-  await fetch(CONTACT_API_BASE_URL, {
-    method: "POST",
-    body: JSON.stringify({
-      fullName, email, phone, message
-    }),
-    headers: {
-      "Content-type": "application/json; charset=UTF-8",
-    },
-  })
-    .then(async (response) => {
-      if (response.status === 201) {
-        hideForm();
-        showSubmissionMessage();
-      } else {
-        await showError();
-      }
-    })
-    .catch(async () => {
-      await showError();
-    })
-    .finally(() => {
-      restoreSendFormButton();
-    });
-}
 
 function validateForm() {
   removeInvalidWarnings();
-  const form = document.querySelector("#contact-us-form") as HTMLFormElement;
+  const form = document.querySelector("#contact-us-section").value;
   form.checkValidity();
   form.reportValidity();
   return form.checkValidity() && fieldValidations();
 }
 
-function fieldValidations(): boolean {
-  let valid: boolean = true;
+function fieldValidations() {
+  let valid = true;
   if (!validateNotEmpty(getFullName().value)) {
     markAsInvalidField(getFullName())
     valid = false;
@@ -68,11 +28,11 @@ function fieldValidations(): boolean {
   return valid;
 }
 
-const validatePhone = (phone: String)=>{
+const validatePhone = ()=>{
   return String(phone).match(/^(\+34|0034|34)?[6789]\d{8}$/) !==null;
 }
 
-const validateEmail = (email: String): boolean => {
+const validateEmail = (): boolean => {
   return String(email)
     .toLowerCase()
     .match(
@@ -85,36 +45,36 @@ const validateNotEmpty = (name: String): boolean => {
 }
 
 
-function markAsInvalidField(element: HTMLElement) {
+function markAsInvalidField() {
   element.classList.add('invalid-input');
 }
 
 function removeInvalidWarnings() {
   const formElements = document.querySelectorAll(
     "#contact-us-form input, #contact-us-form area"
-  ) as NodeListOf<Element>;
+  ).value;
   formElements.forEach((element) => element.classList.remove('invalid-input'));
 }
 
 
-function getFullName(): HTMLFormElement {
-  return (document.querySelector('#contact-us-form input[name="full-name"]') as HTMLFormElement);
+function getFullName() {
+  return (document.querySelector('#contact-us-form input[name="full-name"]').value);
 }
-function getEmail(): HTMLFormElement {
-  return (document.querySelector('#contact-us-form input[name="email"]') as HTMLFormElement);
+function getEmail() {
+  return (document.querySelector('#contact-us-form input[name="email"]').value);
 }
-function getPhone(): HTMLFormElement {
-  return (document.querySelector('#contact-us-form input[name="phone"]') as HTMLFormElement);
+function getPhone() {
+  return (document.querySelector('#contact-us-form input[name="phone"]').value);
 }
-function getMessage(): HTMLFormElement {
-  return (document.querySelector('#contact-us-form textarea[name="message"]') as HTMLFormElement);
+function getMessage() {
+  return (document.querySelector('#contact-us-form textarea[name="message"]').value);
 }
 
 
 function showPleaseWaitMessage() {
   const subscribeButton = document.querySelector(
     ".contat-us-section__submit-button"
-  ) as HTMLInputElement;
+  ).value;
 
   subscribeButton.innerHTML = "Please wait...";
 }
@@ -122,7 +82,7 @@ function showPleaseWaitMessage() {
 function showSubmissionMessage() {
   const submissionMessage = document.querySelector(
     ".contat-us-section .submitted-message"
-  ) as HTMLElement;
+  ).value;
   submissionMessage.classList.toggle('fade');
 }
 
@@ -130,7 +90,7 @@ function showSubmissionMessage() {
 function hideForm() {
   const form = document.querySelector(
     "#contact-us-form"
-  ) as HTMLElement;
+  ).value;
 
   form.style.display = "none";
   form.style.visibility = "hidden";
@@ -139,7 +99,7 @@ function hideForm() {
 function restoreSendFormButton() {
   const submitButton = document.querySelector(
     ".contat-us-section__submit-button"
-  ) as HTMLInputElement;
+  ).value;
 
   submitButton.style.backgroundColor = "var(--main-blue-color)";
   submitButton.innerHTML = "Submit";
@@ -148,7 +108,7 @@ function restoreSendFormButton() {
 function showError() {
   const submitButton = document.querySelector(
     ".contat-us-section__submit-button"
-  ) as HTMLInputElement;
+  ).value;
 
   submitButton.innerHTML = "Something went wrong!";
   submitButton.style.backgroundColor = "red";
@@ -160,7 +120,7 @@ function showError() {
 window.addEventListener("load", () => {
   const sendFormButton = document.querySelector(
     ".contat-us-section__submit-button"
-  ) as HTMLInputElement;
+  ).value;
 
   sendFormButton.addEventListener("click", sendForm);
 });
