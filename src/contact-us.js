@@ -1,4 +1,4 @@
-const CONTACT_API_BASE_URL = "//";
+const CONTACT_API_BASE_URL = "https://";
 
 export async function sendForm(event?: { preventDefault: () => void }) {
   event?.preventDefault();
