@@ -1,4 +1,4 @@
-var okName = false;
+var okFullName = false;
 var okEmail = false;
 var okPhone = false;
 var okMessage = false;
@@ -9,11 +9,11 @@ function validateName() {
     document.getElementById("errorName").hidden = false;
     nameUser.style.borderColor = "red";
     nameUser.style.borderStyle = "solid";
-    okName = false;
+    okFullName = false;
   } else {
     document.getElementById("errorName").hidden = true;
     nameUser.style.borderStyle = "none";
-    okName = true;
+    okFullName = true;
   }
   checkValues();
 }
@@ -78,7 +78,7 @@ function validateMessage(){
 }
 
 function checkValues() {
-  if (okName && okEmail && okPhone && okMessage) {
+  if (okFullName && okEmail && okPhone && okMessage) {
     document.getElementById("errorSubmit").hidden = true;
   }
 }
@@ -87,7 +87,7 @@ function checkValues() {
 function sendForm() {
 
   let incompleteForm = document.getElementById("errorSubmit");
-  if (okName && okEmail && okPhone && okMessage) {
+  if (okFullName && okEmail && okPhone && okMessage) {
     incompleteForm.hidden = true;
    toggleModal();
   } else {
